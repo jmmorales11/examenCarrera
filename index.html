@@ -2,18 +2,35 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Encuesta Dinámica de Programación Paralela</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
+      margin: 0;
+      padding: 0;
       line-height: 1.5;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Asegura que se ocupe toda la altura de la pantalla */
     }
+
+    .container {
+      width: 100%;
+      max-width: 800px; /* Máximo tamaño para pantallas grandes */
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
     .search-container {
       display: flex;
+      flex-wrap: wrap;
       margin-bottom: 1rem;
+      width: 100%;
     }
+
     .search-container input {
       flex: 1;
       padding: 0.75rem;
@@ -21,34 +38,44 @@
       border: 1px solid #ccc;
       border-radius: 6px 0 0 6px;
       outline: none;
+      margin-bottom: 0.5rem;
+      width: 100%;
     }
+
     .search-container button {
-      padding: 0 1rem;
+      padding: 0.75rem;
       font-size: 1rem;
       border: 1px solid #1976d2;
       background: #1976d2;
       color: white;
       border-radius: 0 6px 6px 0;
       cursor: pointer;
+      width: 100%;
     }
+
     .search-container button:hover {
       background: #155fa0;
     }
+
     .question {
       margin-bottom: 1.5rem;
       padding: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       position: relative;
+      width: 100%;
     }
+
     .question.correct {
       border-color: #4caf50;
       background: #e8f5e9;
     }
+
     .question.incorrect {
       border-color: #f44336;
       background: #ffebee;
     }
+
     .options label {
       display: block;
       margin: 0.5rem 0;
@@ -58,17 +85,21 @@
       cursor: pointer;
       position: relative;
       transition: background 0.3s, border-color 0.3s;
+      width: 100%;
     }
+
     .options label.correct {
       background: #e8f5e9;
       border-color: #4caf50;
       color: #2e7d32;
     }
+
     .options label.wrong {
       background: #ffebee;
       border-color: #f44336;
       color: #c62828;
     }
+
     .options label.correct::after,
     .options label.wrong::after {
       position: absolute;
@@ -77,36 +108,57 @@
       transform: translateY(-50%);
       font-size: 1.2rem;
     }
+
     .options label.correct::after { content: '✔️'; }
     .options label.wrong::after { content: '❌'; }
+
     .options input {
       display: none;
     }
+
     .feedback {
       margin-top: 1rem;
       padding: 0.75rem;
       border-radius: 6px;
       font-weight: bold;
     }
+
     .feedback.correct {
       background: #e3f2fd;
       border: 1px solid #90caf9;
       color: #1565c0;
     }
+
     .feedback.incorrect {
       background: #fdecea;
       border: 1px solid #f8bbd0;
       color: #c62828;
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        width: 100%; /* Ocupa toda la pantalla en móviles */
+        padding: 0.5rem;
+      }
+      .search-container input, .search-container button {
+        width: 100%; /* Asegura que los inputs y botones ocupen todo el ancho */
+      }
+      .question {
+        margin-bottom: 1rem;
+      }
+      .options label {
+        width: 100%; /* Asegura que las opciones ocupen todo el ancho */
+      }
+    }
   </style>
 </head>
 <body>
-
-  
-
-  <form id="quizForm"></form>
+  <div class="container">
+    <form id="quizForm"></form>
 
   <script>
+    
     const questions = [
       {
         text: '¿Cuál de los siguientes métodos son usados por los semáforos para controlar el acceso a las secciones críticas?',
@@ -22943,7 +22995,6 @@
 
 
     ];
-
     const form = document.getElementById('quizForm');
 
     function renderQuestions(filter = '') {
@@ -23006,5 +23057,6 @@
     });
   </script>
 
+  </div>
 </body>
 </html>
